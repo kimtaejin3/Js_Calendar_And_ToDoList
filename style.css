@@ -1,0 +1,175 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Epilogue', sans-serif;
+}
+
+.clearfix::after{
+    content: ' ';
+    display: block;
+    clear: both;
+}
+
+li{
+    list-style: none;
+}
+
+body{
+    background: rgb(245, 241, 241);
+}
+
+.main{
+    background: rgb(238,126,195);
+    background: linear-gradient(74deg, rgba(238,126,195,1) 9%, rgba(149,175,213,0.981127485173757) 100%);
+    width: 698px;
+    margin: 50px auto 0;
+    padding: 20px 0px 20px 25px;
+    border-radius: 10px;
+}
+
+.main .main-title{
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.main .day{
+    width: 100%;
+    /* overflow: hidden; */
+}
+
+.main .day li{
+    float: left;
+    background: white;
+    padding: 10px;
+    width: 80px;
+    height: 80px;
+    margin-right: 14px;
+    margin-top: 10px;
+}
+
+.main .day li:last-child{
+    margin-right: 0;
+}
+
+.main .day li:hover{
+    cursor: pointer;
+    transition: all .2s;
+    transform: scale(1.08);
+}
+
+.month{
+    color: #fff;
+    font-size: 22px;
+    text-align:center;
+    margin-left: -25px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.month .fas{
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.month .fas:hover{
+    transition: all .2s ease-in-out;
+    transform: scale(1.2);
+}
+
+.month .fa-chevron-left{
+    float: left;
+    margin-left: 15px;
+}
+
+.month .fa-chevron-right{
+    float: right;
+    margin-right: 15px;
+}
+
+.dayCount .dayCount-list li{
+    float: left;
+    width: 94px;
+    color: #fff;
+}
+
+.sun,.sat{
+    color: red;
+}
+
+.none{
+    display: none;
+}
+
+.todo{
+    width: 698px;
+    margin: 10px auto 100px;
+    background: white;
+    padding: 20px;
+
+}
+
+.textToDo{
+    margin-top: 20px;
+}
+
+.textToDo .textToDo-text[type="text"]{
+    border: none;
+    border: 3px solid rgb(222, 140, 229);
+    border-radius: 10px;;
+    padding: 5px 20px;
+    width: 300px;
+}
+
+.textToDo .textToDo-text[type="text"]:focus{
+    outline: none;
+    box-shadow: 0px 5px 10px 5px rgba(0,0,0,0.1);
+}
+
+.textToDo .textToDo-button{
+    margin-left: 10px;
+    border: none;
+    border: 3px solid rgb(222, 140, 229);
+    padding: 6px 10px;
+    background: white;
+    border-radius: 20px;
+    transition: all .2s;
+}
+
+.textToDo .textToDo-button:focus{
+    outline: none;
+}
+
+.textToDo .textToDo-button:hover{
+    cursor: pointer;
+    transition: all .2s;
+    transform: scale(1.1);
+}
+
+.todoList{
+    padding: 10px;
+}
+
+.todoList li{
+    padding: 8px;
+    border-bottom: 1px solid gray;
+}
+
+.deleteBtn{
+    border: none;
+    float: right;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.deleteBtn:focus{
+    outline:none;
+}
+
+.deleteBtn:hover{
+    transition: all .2s;
+    transform: scale(1.2);
+}
+
+
