@@ -14,15 +14,20 @@ const add = document.querySelector('.add');
 const reset = document.querySelector('.reset');
 const allReset = document.querySelector('.allreset');
 
+
 let currentMon = date.getMonth()+1;   
 let currentYear = date.getFullYear();
 let currentDay = date.getDate();
 
 let DayOfChoice = currentDay;
-let preDayOfChoice;
+let MonOfChoice = currentMon;
+let yearOfChoice = currentYear;
 
 let year = currentYear;
 let mon = currentMon;
+
+let clickEventArr = [];
+let storeToDo = [];
 
 function isLeapYear(year){
     return (year%4==0)&&(year%400==0||year%100!=0);
@@ -44,8 +49,8 @@ function getDay(year,mon,date){
     const conYMD = year+'-'+mon+'-'+date;
     return(new Date(conYMD).getDay());
 }
-
 function makeCalendar(year,mon,dayCount){
+    clickEventArr=[];
     Day.innerHTML='';
     let getFirstDay = getDay(year,mon,1);
     let previousMon;
@@ -63,23 +68,50 @@ function makeCalendar(year,mon,dayCount){
         listPre.classList.add('disabled');
         Day.appendChild(listPre);
     }
+   
     for(let i=1; i<=dayCount; i++){
+        if(i===currentDay&&year===currentYear&&mon===currentMon){
+            //선택한 년, 월, 일 다를 때 현재 날짜에 검은색 테두리
+            const onlyOneList = document.createElement('li');
+
+            onlyOneList.textContent = `${i}`;
+            if(currentYear === yearOfChoice && currentMon === MonOfChoice && currentDay === DayOfChoice){
+                onlyOneList.style.border = '3px solid red';
+            }
+            else{
+                onlyOneList.style.border = '3px solid black';
+            }
+
+            if(0===getDay(year,mon,i)){
+                onlyOneList.style.color = 'red';
+            }
+            else if(6==getDay(year,mon,i)){
+                onlyOneList.style.color = 'blue';
+            }
+
+            //현재 년, 월 같을 때
+            
+            Day.addEventListener('click',(event)=>{
+                if(event.target!==onlyOneList){
+                    onlyOneList.style.border = '3px solid black';
+                }
+            });
+
+            Day.appendChild(onlyOneList);
+            continue;
+        }
+
         const list = document.createElement('li');
         list.textContent = `${i}`;
-        if(i===currentDay&&year===currentYear&&mon==currentMon){
-            // list.style.background = '#ddd';
+        if(i===DayOfChoice&&year===yearOfChoice&&mon===MonOfChoice){
             list.style.border = '3px solid red';
             Day.addEventListener('click',(event)=>{
                 if(event.target!==list){
-                    list.style.border = '3px solid black';
+                    list.style.border = 'none';
                 }
             });
-            list.addEventListener('click',(event)=>{
-                if(event.target.style.color === 'black'){
-                    list.style.border = '3px solid red';
-                }
-            });
-        }
+        }    
+
         if(0===getDay(year,mon,i)){
             list.style.color = 'red';
         }
@@ -154,7 +186,6 @@ function displayToDoOnDays(){
         
     }
     else{
-        console.log('hi');
         const deleteBtn = document.createElement('button');
         deleteBtn.setAttribute('class','deleteBtn');
         deleteBtn.innerHTML = '<i class="far fa-minus-square"></i>';
@@ -168,8 +199,6 @@ function displayToDoOnDays(){
 pre.addEventListener('click',preMonthOrYear);
 next.addEventListener('click',nextMonthOrYear);
 
-let clickEventArr = [];
-let storeToDo = [];
 
 function clearEvent(){
     clickEventArr.forEach((value)=>{
@@ -183,9 +212,13 @@ Day.addEventListener('click',(event)=>{
         clearEvent();
         todoTitle.textContent = `What are you going to do on ${year}.${mon}.${event.target.textContent} 👀⁉`;
         event.target.style.border='3px solid red';
-        DayOfChoice = event.target.textContent;
+        DayOfChoice = (event.target.textContent)*1;
+        MonOfChoice = mon;
+        yearOfChoice = year;
+        
         displayToDoOnDays();
         clickEventArr.push(event.target);
+        console.log(clickEventArr);
         input.focus();
     }
     
