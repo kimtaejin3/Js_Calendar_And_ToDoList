@@ -14,5 +14,4 @@ calendar part
 
 to-do-List part
 
-### 개선할 사항
-- 리팩토링(중복제거, 불필요한 연산 및 변수 사용 등)
+
